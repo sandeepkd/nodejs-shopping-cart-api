@@ -60,6 +60,18 @@ exports.logout = (req, res)=>{
 
 }
 
+
+/**
+ * 
+ * Logout Controller
+ *  
+ * */ 
+exports.test = (req, res)=>{
+
+    res.send("test route works");
+
+}
+
 exports.authCheck = (req, res)=>{
 
     res.send("Authcheck works");

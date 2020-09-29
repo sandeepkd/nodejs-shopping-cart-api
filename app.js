@@ -16,9 +16,11 @@ app.use(bodyParser.json({limit: '50mb', extended: true}))
 
 db.connection();
 
+const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/user');
 const cmpgnrRouter = require('./routes/campaign');
 app.use('/api', userRouter);
+app.use('/auth', adminRouter);
 
 app.use('/dev', cmpgnrRouter);
 
