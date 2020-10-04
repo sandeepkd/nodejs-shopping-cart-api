@@ -32,7 +32,7 @@ exports.register = (req, res)=>{
                     
                     if (err) return res.status(500).send("There was a problem registering the user.")
 
-                    res.status(200).send({ auth: true, result: "You are successfully Registered!" });
+                    res.status(200).send({ auth: true, result: "Successfully Registered!" });
                 });
 
             }
@@ -72,7 +72,7 @@ exports.login = (req, res)=>{
 
               } else {
                 
-                var data = { auth: false, message: "Wrong Password" };
+                var data = { auth: false, message: "Wrong Password, Please check and try!" };
                 var token = jwt.sign(data, config.secret, { expiresIn: "12h" });
                 res.json(token);
                 
@@ -80,7 +80,7 @@ exports.login = (req, res)=>{
 
         }else{
 
-                var data = { auth: false, message: "Please register first!" };
+                var data = { auth: false, message: "Username not found, Please register!" };
                 var token = jwt.sign(data, config.secret, { expiresIn: "12h" });
                 res.json(token);
 
