@@ -10,6 +10,8 @@ exports.register = (req, res)=>{
     
     if(req.body.fullname!=="" && req.body.email!=="" && req.body.username!=="" && req.body.password!==""){
         
+        console.log(req.body.fullname);
+
         Admin.findOne({ username: req.body.username}).then(function(admin){
                 
             if(admin) { 

@@ -24,6 +24,7 @@ exports.register = (req, res)=>{
                         username: req.body.username,
                         email: req.body.email,
                         password: hash,
+                        address: req.body.address ? req.body.address : '',
                         created_at: new Date()
                 });
                 

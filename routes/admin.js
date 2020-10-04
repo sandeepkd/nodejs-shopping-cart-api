@@ -6,6 +6,5 @@ router.post('/aregister', adminController.register);
 router.get('/test', adminController.test);
 router.get('/authcheck', adminController.authCheck);
 
-
 module.exports = router;
 
