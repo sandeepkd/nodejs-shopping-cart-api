@@ -27,6 +27,7 @@ exports.register = (req, res)=>{
                         username: req.body.username,
                         email: req.body.email,
                         password: hash,
+                        role: 'Admin',
                         created_at: new Date()
                 });
                 
@@ -65,6 +66,7 @@ exports.login = (req, res)=>{
                                 name: admin.fullname,
                                 email: admin.email,
                                 username: admin.username,
+                                role: admin.role,
                                 auth: true
                             }
 
@@ -103,17 +105,16 @@ exports.logout = (req, res)=>{
 
 /**
  * 
- * Logout Controller
+ * Add Category Controller
  *  
  * */ 
-exports.test = (req, res)=>{
+exports.addCategory = (req, res)=>{
 
-    res.send("test route works");
-
-}
-
-exports.authCheck = (req, res)=>{
-
-    res.send("Authcheck works");
-
+    var token = req.headers['x-access-token'];
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, config.secret, function(err, decoded) {
+        if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+        res.status(200).send(decoded);
+    });
 }

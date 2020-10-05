@@ -18,10 +18,12 @@ db.connection();
 
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/user');
-const cmpgnrRouter = require('./routes/campaign');
+
+const categoryRouter = require('./routes/category');
+
 app.use('/api', userRouter);
 app.use('/auth', adminRouter);
 
-app.use('/dev', cmpgnrRouter);
+app.use('/admin', categoryRouter);
 
-module.exports = app;
+module.exports = app; 
