@@ -23,8 +23,8 @@ exports.create = (req, res)=>{
                 cat.save(function (err, results) {
 
                     if (err) return res.status(500).send("There was a problem saving the Category.");
-                    
-                    res.status(200).send({ auth: true, result: "Successfully Added!" });
+
+                    res.status(200).send({ status: true, result: "Successfully Added!" });
                 });
 
             }
@@ -32,7 +32,7 @@ exports.create = (req, res)=>{
         });
 
     }else{
-            res.status(500).send({ auth: false, result:"Something went wrong!" });
+            res.status(500).send({ status: false, result:"Something went wrong!" });
     }
 }
 
