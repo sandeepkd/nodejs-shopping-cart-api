@@ -18,12 +18,13 @@ db.connection();
 
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/user');
-
 const categoryRouter = require('./routes/category');
+const productRouter = require('./routes/product');
 
 app.use('/api', userRouter);
 app.use('/auth', adminRouter);
 
 app.use('/admin', categoryRouter);
+app.use('/product', productRouter);
 
 module.exports = app; 
