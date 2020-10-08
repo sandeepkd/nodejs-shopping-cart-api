@@ -93,3 +93,23 @@ exports.list = (req, res)=>{
     });
 
 }
+
+/**
+ * 
+ * Delete Controller
+ *  
+ * */
+exports.deleteItem = (req, res) => {
+    if (req.body.prod_id !== "") {
+        Product.findByIdAndDelete({ _id: req.body.prod_id }).then(function (result) {
+            if (result) {
+                res.json(result);
+            } else {
+                res.json({ "status": "No Data found!" });
+            }
+        });
+    } else {
+        res.status(500).send({ status: false, result: "Something went wrong!" });
+    }
+
+}
