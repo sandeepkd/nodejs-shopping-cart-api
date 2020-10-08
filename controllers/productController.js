@@ -116,3 +116,25 @@ exports.deleteItem = (req, res) => {
     }
 
 }
+
+
+/**
+ * 
+ * Details Controller
+ *  
+ * */
+exports.details = (req, res) => {
+    console.log(req.body.prod_id);
+    if (req.body.prod_id !== "") {
+        Product.findById(req.body.prod_id).then(function (result) {
+            if (result) {
+                res.json(result);
+            } else {
+                res.json({ "status": "No Data found!" });
+            }
+        });
+    } else {
+        res.status(500).send({ status: false, result: "Something went wrong!" });
+    }
+
+}
