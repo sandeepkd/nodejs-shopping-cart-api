@@ -1,4 +1,5 @@
 const Product = require('../models/products');
+const Category = require('../models/category');
 const ProductImage = require('../models/productImage');
 const body = require('body-parser');
 
@@ -6,7 +7,7 @@ exports.create = (req, res)=>{
     
     if(req.body.prod_name!=="" && req.body.short_description!=="" && req.body.cat_id !==""){
         
-        console.log(req.body.prod_name);
+        
         Product.findOne({ prod_name: req.body.prod_name}).then(function(products){
                 
             if(products) { 
@@ -14,25 +15,27 @@ exports.create = (req, res)=>{
                 res.json({ "code":"1000", "message":"Already exist!" });
 
             }else{
-                     let product_schema = new Product({
-                        cat_id: req.body.cat_id,
-                        prod_name: req.body.prod_name,
-                        short_description: req.body.short_description,
-                        description: req.body.description ? req.body.description : '',
-                        price_per_kg: req.body.price_per_kg ? req.body.price_per_kg : 0.00,
-                        created_at: new Date()
-                });
-                
-                product_schema.save(function (err, results) {
+                    
+                    Category.findById(req.body.cat_id).then(function(category){
+                        console.log(category);
+                        this.categoty = category;
+                        let product_schema = new Product({
+                            cat_id: req.body.cat_id,
+                            prod_name: req.body.prod_name,
+                            category: category,
+                            short_description: req.body.short_description,
+                            description: req.body.description ? req.body.description : '',
+                            price_per_kg: req.body.price_per_kg ? req.body.price_per_kg : 0.00,
+                            created_at: new Date()
+                        });
+                    
+                        product_schema.save(function (err, results) {
+                            if (err) return res.status(500).send("There was a problem saving the Products.");
+                            res.status(200).send({ status: true, result: "Successfully Added!" });
+                        });
 
-                    if (err) return res.status(500).send("There was a problem saving the Products.");
-
-                    res.status(200).send({ status: true, result: "Successfully Added!" });
-
-                });
-
+                    });
             }
-
         });
 
     }else{
