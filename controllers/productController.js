@@ -1,6 +1,8 @@
 const Product = require('../models/products');
 const Category = require('../models/category');
 const ProductImage = require('../models/productImage');
+const productVariation = require('../models/productVariation');
+
 const body = require('body-parser');
 
 exports.create = (req, res)=>{
@@ -42,7 +44,6 @@ exports.create = (req, res)=>{
             res.status(500).send({ status: false, result:"Something went wrong!" });
     }
 }
-
 
 exports.uploadImages = (req, res)=>{
     
@@ -127,6 +128,68 @@ exports.details = (req, res) => {
     console.log(req.body.prod_id);
     if (req.body.prod_id !== "") {
         Product.findById(req.body.prod_id).then(function (result) {
+            if (result) {
+                res.json(result);
+            } else {
+                res.json({ "status": "No Data found!" });
+            }
+        });
+    } else {
+        res.status(500).send({ status: false, result: "Something went wrong!" });
+    }
+
+}
+
+/**
+ * 
+ * variations Controller
+ *  
+ * */
+exports.variations = (req, res) => {
+    //console.log(req.body.prod_id);
+    if (req.body.prod_id !== "") {
+        productVariation.find({"prod_id":req.body.prod_id}).then(function (result) {
+            if (result) {
+                //console.log(result);
+                res.json(result);
+            } else {
+                res.json({ "status": "No Data found!" });
+            }
+        });
+    } else {
+        res.status(500).send({ status: false, result: "Something went wrong!" });
+    }
+}
+
+exports.addVariation = (req, res)=>{
+    
+    if(req.body.weight!=="" && req.body.price!=="" && req.body.prod_id !==""){ 
+        let productVariation_schema = new productVariation({
+            prod_id: req.body.prod_id,
+            weight: req.body.weight,
+            price: req.body.price ? req.body.price : '',
+            created_at: new Date()
+        });
+    
+        productVariation_schema.save(function (err, results) {
+            if (err) return res.status(500).send("There was a problem saving the Product Variations.");
+            res.status(200).send({ status: true, result: "Successfully Added!" });
+        });
+
+    }else{
+        res.status(500).send({ status: false, result:"Something went wrong!" });
+    }
+
+}
+
+/**
+ * 
+ * Delete Controller
+ *  
+ * */
+exports.deleteVariation = (req, res) => {
+    if (req.body.var_id !== "") {
+        productVariation.findByIdAndDelete({ _id: req.body.var_id }).then(function (result) {
             if (result) {
                 res.json(result);
             } else {

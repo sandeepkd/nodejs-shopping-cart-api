@@ -2,6 +2,7 @@ const User = require('../models/user');
 const body = require('body-parser');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+var aes256 = require('aes256');
 var config = require('../helpers/secret');
 const salt = bcrypt.genSaltSync(10);
 
@@ -113,6 +114,13 @@ exports.usersList = (req, res)=>{
 
 exports.authCheck = (req, res)=>{
 
-    res.send("Authcheck works");
+    var key = '123456';
+    var plaintext = 'sandeep kumar dan';
+    var encrypted = aes256.encrypt(key, plaintext);
+    var decrypted = aes256.decrypt(key, encrypted);
+    console.log("-----"+encrypted);
+    console.log("-----"+decrypted);
 
+    res.send("Authcheck works"+encrypted);
+q
 }
