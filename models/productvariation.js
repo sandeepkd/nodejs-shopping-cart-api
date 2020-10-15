@@ -8,4 +8,4 @@ var ProductVariationSchema = new mongoose.Schema({
     }, { timestamp: true}
 );
 
-module.exports = mongoose.model('ProductVariation', ProductVariationSchema);
+module.exports = mongoose.model('ProductVariation', ProductVariationSchema); 
