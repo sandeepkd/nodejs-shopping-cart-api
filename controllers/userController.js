@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const ShippingAddress = require('../models/shipppingAddress');
+const shipppingAddress = require('../models/shipppingAddress');
 const body = require('body-parser');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -85,7 +85,6 @@ exports.login = (req, res)=>{
                 var data = { auth: false, message: "Username not found, Please register!" };
                 var token = jwt.sign(data, config.secret, { expiresIn: "12h" });
                 res.json(token);
-
         }
     });
 
@@ -111,6 +110,7 @@ exports.usersList = (req, res)=>{
         if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
         res.status(200).send(decoded);
     });
+      
 }
 
 exports.authCheck = (req, res)=>{
@@ -127,13 +127,7 @@ exports.authCheck = (req, res)=>{
 
 exports.shippingAddressList = (req, res)=>{
 
-    var key = '123456';
-    var plaintext = 'sandeep kumar dan';
-    var encrypted = aes256.encrypt(key, plaintext);
-    var decrypted = aes256.decrypt(key, encrypted);
-    console.log("-----"+encrypted);
-    console.log("-----"+decrypted);
-
     res.send("Authcheck works"+encrypted);
+
 }
 

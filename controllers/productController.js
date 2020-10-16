@@ -1,7 +1,7 @@
 const Product = require('../models/products');
 const Category = require('../models/category');
-const ProductImage = require('../models/productImage');
-const productVariation = require('../models/ProductVariation');
+const productImage = require('../models/productImage');
+const productVariation = require('../models/productVariation');
 
 const body = require('body-parser');
 
@@ -50,7 +50,7 @@ exports.uploadImages = (req, res)=>{
     if(req.body.prod_id!=="" && req.body.image_name!=="" && req.body.alt_tag!==""){
         
         console.log(req.body.image_name);
-        ProductImage.findOne({ image_name: req.body.image_name}).then(function(productimages){
+        productImage.findOne({ image_name: req.body.image_name}).then(function(productimages){
                 
             if(productimages) { 
 
@@ -137,7 +137,6 @@ exports.details = (req, res) => {
     } else {
         res.status(500).send({ status: false, result: "Something went wrong!" });
     }
-
 }
 
 /**

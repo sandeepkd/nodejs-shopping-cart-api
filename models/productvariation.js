@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var ProductVariationSchema = new mongoose.Schema({
+var productVariationSchema = new mongoose.Schema({
     prod_id:  { type: String, required: true},
     weight:  { type: String, required: true},
     price:  { type: String},
@@ -8,4 +8,4 @@ var ProductVariationSchema = new mongoose.Schema({
     }, { timestamp: true}
 );
 
-module.exports = mongoose.model('ProductVariation', ProductVariationSchema); 
+module.exports = mongoose.model('productVariation', productVariationSchema); 
