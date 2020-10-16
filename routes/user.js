@@ -5,6 +5,7 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 router.post('/users', userController.usersList);
+router.post('/shipping-address', userController.usersList);
 router.get('/authcheck', userController.authCheck);
 
 module.exports = router;

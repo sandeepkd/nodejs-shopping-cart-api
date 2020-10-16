@@ -1,7 +1,7 @@
 const Product = require('../models/products');
 const Category = require('../models/category');
 const ProductImage = require('../models/productImage');
-const productVariation = require('../models/productVariation');
+const productVariation = require('../models/ProductVariation');
 
 const body = require('body-parser');
 

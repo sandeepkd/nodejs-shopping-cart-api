@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const ShippingAddress = require('../models/ShippingAddress');
 const body = require('body-parser');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -122,5 +123,17 @@ exports.authCheck = (req, res)=>{
     console.log("-----"+decrypted);
 
     res.send("Authcheck works"+encrypted);
-q
 }
+
+exports.shippingAddressList = (req, res)=>{
+
+    var key = '123456';
+    var plaintext = 'sandeep kumar dan';
+    var encrypted = aes256.encrypt(key, plaintext);
+    var decrypted = aes256.decrypt(key, encrypted);
+    console.log("-----"+encrypted);
+    console.log("-----"+decrypted);
+
+    res.send("Authcheck works"+encrypted);
+}
+
