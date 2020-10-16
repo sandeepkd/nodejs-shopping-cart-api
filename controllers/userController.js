@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const ShippingAddress = require('../models/ShippingAddress');
+const ShippingAddress = require('../models/shipppingAddress');
 const body = require('body-parser');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');

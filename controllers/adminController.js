@@ -38,7 +38,6 @@ exports.register = (req, res)=>{
     }
 }
 
-
 /**
  * 
  * Login Controller

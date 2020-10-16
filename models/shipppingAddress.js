@@ -13,4 +13,4 @@ var ShippingAddressSchema = new mongoose.Schema({
     }, { timestamp: true}
 );
 
-module.exports = mongoose.model('ShippingAddress', ShippingAddressSchema);
+module.exports = mongoose.model('shipppingAddress', ShippingAddressSchema);
